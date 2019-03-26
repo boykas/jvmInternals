@@ -2,6 +2,8 @@
 - Find prime numbers in the range of 4 to 10000 via loop
 - Find prime numbers in the range of 4 to 10000 via stream
 - Find prime numbers in the range of 4 to 10000 via  parrallel stream
+- Method throws the exception without getting stack trace
+- Method throws the exception with getting stack trace
 
 |Benchmark                                                |   Score    | Error  |   Units |
 |---------------------------------------------------------|------------|--------|---------|
