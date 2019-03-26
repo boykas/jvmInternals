@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@BenchmarkMode(Mode.All)
+@BenchmarkMode(Mode.Throughput)
 @Fork(value = 1)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class MyBenchmark {
@@ -83,20 +83,20 @@ public class MyBenchmark {
 
 
     @Benchmark
-    public void testThrowsTheCustomExceptionWithOutStackTrace(MyState myState) {
+    public void testThrowsTheCustomExceptionWithStackTrace(MyState myState) {
         try {
             myState.textService.exception(null);
-        }catch (CustomException ex){
-            ex.printStackTrace();
+        } catch (CustomException ex) {
+            StackTraceElement[] stackTrace = ex.getStackTrace();
         }
     }
 
     @Benchmark
-    public void testThrowsTheCustomExceptionWithStackTrace(MyState myState) {
+    public void testThrowsTheCustomExceptionWithOutStackTrace(MyState myState) {
         try {
             myState.textService.exception(null);
-        }catch (CustomException ex){
-            System.out.println("nothing");
+        } catch (CustomException ex) {
+            //Do nothing
         }
     }
 
