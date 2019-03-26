@@ -8,7 +8,6 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, IllegalAccessException, InvocationTargetException {
 
-
         Class<?> myClass = TextService.class;
         URL[] urls = {myClass.getProtectionDomain().getCodeSource().getLocation()};
         ClassLoader delegateParent = myClass.getClassLoader().getParent();

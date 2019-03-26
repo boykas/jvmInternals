@@ -31,14 +31,73 @@
 
 package com.rybalchenko;
 
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+@BenchmarkMode(Mode.All)
+@Fork(value = 1)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class MyBenchmark {
 
+
+    @State(Scope.Thread)
+    public static class MyState {
+        public TextService textService = new TextService();
+    }
+
     @Benchmark
-    public void testMethod() {
-        // This is a demo/sample template for building your JMH benchmarks. Edit as needed.
-        // Put your benchmark code here.
+    public void testFindingThePrimeNumbersViaLoop() {
+        List<Integer> primeNumbers = new ArrayList<>();
+        for (int i = 4; i < 10000; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primeNumbers.add(i);
+            }
+        }
+    }
+
+    @Benchmark
+    public void testFindingThePrimeNumbersViaStream() {
+        List<Integer> collect = IntStream.rangeClosed(4, 10000)
+                .filter(el -> IntStream.rangeClosed(2, (int) Math.sqrt(el))
+                        .noneMatch(sqrt -> el % sqrt == 0)).boxed().collect(Collectors.toList());
+    }
+
+    @Benchmark
+    public void testFindingThePrimeNumbersViaParralelStream() {
+        List<Integer> collect = IntStream.rangeClosed(4, 10000).parallel()
+                .filter(el -> IntStream.rangeClosed(2, (int) Math.sqrt(el)).parallel()
+                        .noneMatch(sqrt -> el % sqrt == 0)).boxed().collect(Collectors.toList());
+    }
+
+
+    @Benchmark
+    public void testThrowsTheCustomExceptionWithOutStackTrace(MyState myState) {
+        try {
+            myState.textService.exception(null);
+        }catch (CustomException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Benchmark
+    public void testThrowsTheCustomExceptionWithStackTrace(MyState myState) {
+        try {
+            myState.textService.exception(null);
+        }catch (CustomException ex){
+            System.out.println("nothing");
+        }
     }
 
 }
