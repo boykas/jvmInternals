@@ -5,11 +5,11 @@
 
 |Benchmark                                                |   Score    | Error  |   Units |
 |---------------------------------------------------------|------------|--------|---------|
-|MyBenchmark.testFindingThePrimeNumbersViaLoop            |   2.292 ±  | 0.339  |  ops/ms |
-|MyBenchmark.testFindingThePrimeNumbersViaParralelStream  |   0.121 ±  | 0.022  |  ops/ms |
-|MyBenchmark.testFindingThePrimeNumbersViaStream          |   0.882 ±  | 0.045  |  ops/ms |
-|MyBenchmark.testThrowsTheCustomExceptionWithOutStackTrace|   739.181 ±| 109.759 |  ops/ms|
-|MyBenchmark.testThrowsTheCustomExceptionWithStackTrace   |   35.842 ± | 3.453  |  ops/ms |
+|testFindingThePrimeNumbersViaLoop                        |   2.292 ±  | 0.339  |  ops/ms |
+|testFindingThePrimeNumbersViaParralelStream              |   0.121 ±  | 0.022  |  ops/ms |
+|testFindingThePrimeNumbersViaStream                      |   0.882 ±  | 0.045  |  ops/ms |
+|testThrowsTheCustomExceptionWithOutStackTrace            |   739.181 ±| 109.759 |  ops/ms|
+|testThrowsTheCustomExceptionWithStackTrace               |   35.842 ± | 3.453  |  ops/ms |
 
 
 # Dynamic proxy
