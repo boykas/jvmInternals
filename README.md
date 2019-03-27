@@ -1,4 +1,5 @@
 # ThreadPool
+The custom thread pool implementation which executes each submitted task using one of the pooled thread was created initially.
 
 # MicroBenchmark (JMH)
 - Find prime numbers in the range of 4 to 10000 via loop
