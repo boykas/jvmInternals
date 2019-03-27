@@ -17,7 +17,7 @@
 # Dynamic proxy
 The implementation on Dynamy proxy object which substitute the method parameter (${variable}) if the system variable "port" is set up
 
-# Dymamical reload the class
+# Dynamic class loading
 Upload updated class each time in a loop. 
 
 
